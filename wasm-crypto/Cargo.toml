@@ -1,0 +1,29 @@
+[package]
+name = "mega-crypto-wasm"
+version = "1.0.0"
+authors = ["Mega Webclient"]
+edition = "2021"
+description = "High-performance WASM crypto for Mega webclient"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+aes = "0.8"
+ccm = "0.5"
+cipher = { version = "0.4", features = ["alloc"] }
+getrandom = { version = "0.2", features = ["js"] }
+console_error_panic_hook = "0.1"
+wee_alloc = { version = "0.4", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[features]
+default = ["console_error_panic_hook"]
